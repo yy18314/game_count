@@ -11,53 +11,57 @@ function Slide(wrap){
 }
 
 Slide.prototype = {
-  init:function(){
-    this.resize();
-    this.addHandler(this.wrap,"touchstart",this.bind_fn(this,this.touch_start));
-    this.addHandler(this.wrap,"touchmove",this.bind_fn(this,this.touch_move));
-    this.addHandler(this.wrap,"touchend",this.bind_fn(this,this.touch_end));
-  },
-  resize : function(){
+      init:function(){
+            this.resize();
+            this.addHandler(this.wrap,"touchstart",this.bind_fn(this,this.touch_start));
+            this.addHandler(this.wrap,"touchmove",this.bind_fn(this,this.touch_move));
+            this.addHandler(this.wrap,"touchend",this.bind_fn(this,this.touch_end));
+            this.addHandler(this.wrap,"click",this.bind_fn(this,this.fnClick));
+      },
+      resize : function(){
 
-  },
-  addHandler : function(elem,evtype,fn){
-    if(elem.attachEvent){
-      elem.attachEvent('on'+evtype,fn);
-    }else if(elem.addEventListener){
-      elem.addEventListener(evtype,fn,false);
-    }else{
-      elem["on"+evtype] = fn;
+      },
+      addHandler : function(elem,evtype,fn){
+            if(elem.attachEvent){
+              elem.attachEvent('on'+evtype,fn);
+            }else if(elem.addEventListener){
+              elem.addEventListener(evtype,fn,false);
+            }else{
+              elem["on"+evtype] = fn;
+            }
+      },
+      bind_fn : function(obj,func){
+            return function(){
+                func.apply(obj,arguments);
+            }
+      },
+      touch_start : function(e){
+            if(!event.touches.length) return;
+            var touch = event.touches[0];
+            this.startX = touch.pageX;
+            this.startY = touch.pageY;
+            //event.preventDefault();
+      },
+      touch_move : function(e){
+        if(!event.touches.length) return;
+        var touch = event.touches[0];
+        this.transX = this.startX-touch.pageX;
+        this.transY = this.startY-touch.pageY;
+
+        e.preventDefault();
+
+        if(Math.abs(this.transY)>Math.abs(this.transX)){
+
+        }
+      },
+      touch_end : function(){
+        if(Math.abs(this.transY)>20){
+          got_money();
+        }else{
+
+        }
+      },
+    fnClick : function(e){
+        got_money();
     }
-  },
-  bind_fn : function(obj,func){
-    return function(){
-      func.apply(obj,arguments);
-    }
-  },
-  touch_start : function(e){
-    if(!event.touches.length) return;
-    var touch = event.touches[0];
-        this.startX = touch.pageX;
-        this.startY = touch.pageY;
-		//event.preventDefault();
-  },
-  touch_move : function(e){
-    if(!event.touches.length) return;
-    var touch = event.touches[0];
-    this.transX = this.startX-touch.pageX;
-    this.transY = this.startY-touch.pageY;
-	
-    e.preventDefault();
-
-    if(Math.abs(this.transY)>Math.abs(this.transX)){
-
-    }
-  },
-  touch_end : function(){
-    if(Math.abs(this.transY)>20){
-      this.play(this.startN+this.prev);
-    }else{
-
-	}
-  }
 }

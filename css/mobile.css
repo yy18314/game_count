@@ -1,2 +1,27 @@
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {margin: 0;padding: 0;border: 0;outline: 0;font-size: 100%;list-style: none;}
 body {font-family: Arial, Helvetica,"\5FAE\8F6F\96C5\9ED1";-webkit-text-size-adjust:100%;background: #cf0;color: #666;-webkit-backface-visibility: hidden;backface-visibility: hidden;}
+
+#wrap{ position: fixed; display: block; left: 0; top: 0; bottom: 0; right: 0; background:url("../images/bg.png") center no-repeat; background-size: cover;}
+#wrap > section{ display: none; position: fixed; left: 0; top: 0; right: 0; bottom: 0;}
+#prepare{ display: block;}
+#prepare > img{ display: block; margin:auto;}
+
+#game{ display: block; background:url("../images/money_bg.png") center bottom no-repeat; background-size: 320px 504px;}
+#game > #money_pipe{ display: block; height: 100%; width: 192px; margin: auto; position: relative;
+
+}
+
+#game > #money_pipe > #score{ position: absolute; bottom: 398px; text-align: right; font-size: 30px; color: #00784c; width: 146px; padding-right: 20px; display: block; left: 0; letter-spacing: 15px;}
+#game > #money_pipe > #time{ position: absolute; bottom: 347px; text-align: center; left: 100px; width: 40px; color: #fff;}
+
+#money_pipe > img{ position: absolute; bottom: -45px;}
+
+
+#result{display:block; background: rgba(0,0,0,0.3)}
+#result > footer{ position: fixed; height: 248px; left: 0; right: 0; bottom: 0;
+    background:url("../images/result.png") center top no-repeat #ffeae7; background-size: 320px 248px;
+    border-top:8px solid #f9ced3;
+    text-align: center;
+    line-height: 200px; color: #ab1724; font-size: 50px;
+}
+#result > footer > #close{ position: fixed; right: 0; bottom:210px;}
